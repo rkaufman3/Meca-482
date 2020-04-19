@@ -1,5 +1,6 @@
-# Meca-482
-#### Furuta Pendulum
+# Meca-482, Furuta Pendulum
+#### Group 7
+#### Ryan Heinz, Roger Jakobson, Robert Kaufman, Ryan Revolinsky, Brennen Van Voorhees
 ----------------------------------------------------------------------------------------------------------
 #### Table Of Contents
 - [1. Overview](#1-Introduction)
