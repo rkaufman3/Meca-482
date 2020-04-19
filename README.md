@@ -1,7 +1,7 @@
 # Meca-482
-####Furuta Pendulum
+#### Furuta Pendulum
 ----------------------------------------------------------------------------------------------------------
-##1. Overview
+## 1. Overview
 “Furuta Pendulum – or rotational inverted pendulum- consists of a driven arm which rotates in the
 horizontal plane and a pendulum attached to that arm which is free to rotate in the vertical plane. It was
 invented in 1992 at Tokyo Institute of Technology by Katsuhisa Furuta and his colleagues.” [1] The
