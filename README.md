@@ -4,7 +4,7 @@
 #### Table Of Contents
 - [1. Overview](#1-Introduction)
 - [2. Derivation](#2-Derivation)
-- [3. Matlab Code](#3-Matlab Code)
+- [3. Matlab Code](#3-Matlab-Code)
 - [4. Simulink](#4-Simulink)
 - [5. Coppelia](#5-Coppelia)
 ----------------------------------------------------------------------------------------------------------
