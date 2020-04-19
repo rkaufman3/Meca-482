@@ -1,5 +1,5 @@
 # Meca-482
-Furuta Pendulum
+####Furuta Pendulum
 ----------------------------------------------------------------------------------------------------------
 ##1. Overview
 “Furuta Pendulum – or rotational inverted pendulum- consists of a driven arm which rotates in the
