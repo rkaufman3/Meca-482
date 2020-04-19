@@ -1,6 +1,11 @@
 # Meca-482
 #### Furuta Pendulum
 ----------------------------------------------------------------------------------------------------------
+#### Table Of Contents
+- [1. Overview](#1-Introduction)
+- [2. Derivation](#2-Derivation)
+
+----------------------------------------------------------------------------------------------------------
 ## 1. Overview
 “Furuta Pendulum – or rotational inverted pendulum- consists of a driven arm which rotates in the
 horizontal plane and a pendulum attached to that arm which is free to rotate in the vertical plane. It was
@@ -22,3 +27,11 @@ Deliverables:
   connecting Coppelia Sim to MATLAB, Simulink, or whatever the programming landscape is used.
 - If the system contains hardware, the design of hardware should consist the necessary
   architectural explanations such as hardware and software relationships.
+----------------------------------------------------------------------------------------------------------
+## 2. Derivation
+----------------------------------------------------------------------------------------------------------
+## 3. Matlab Code
+----------------------------------------------------------------------------------------------------------
+## 4. Simulink
+----------------------------------------------------------------------------------------------------------
+## 5. Coppelia
