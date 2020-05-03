@@ -34,7 +34,7 @@ Deliverables:
 ## 2. Derivation
 ----------------------------------------------------------------------------------------------------------
 ## 3. Matlab Code
-```matlab
+```
 %% Furuta Pendulum - State Space Equations
 % MECA 482 - Spring 2020 - Final Project
 % This code checks the hand calculated state space equations of motion that
