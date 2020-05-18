@@ -33,6 +33,13 @@ Deliverables:
   connecting Coppelia Sim to MATLAB, Simulink, or whatever the programming landscape is used.
 - If the system contains hardware, the design of hardware should consist the necessary
   architectural explanations such as hardware and software relationships.
+  
+Overall Project Design:
+- Matlab: Calculates the intermiedate equations and the state space representation of the balancing model, initializes Coppelia, and
+ties the Coppelia and the Simulink Model together
+- Simulink: Holds the controller model that dictates how the rotary inverted pendulum should act to ensure its functional
+- Coppelia: Simulates the realtime action of the rotary inverted pendulum, showing whether it works or not
+ 
 ----------------------------------------------------------------------------------------------------------
 ## 2. Derivation
 
@@ -40,7 +47,7 @@ The initial derivation to aquire the control equations was done by hand and is d
 called Courseware Resources.zip which is filled with documentation and initial simulink software from Quanser which was a huge help in
 the derivation and building of the simulink model.
 
-Note: The Matlab code supplemented by Quanser was also canabilized to get the base model constraints of the Pendulum. 
+Note: Their are some errors in the hand calculations, in the z equations, that where addressed in the Matlab code
 
 ![](Photos/Derivation/Capture.PNG)
 ![](Photos/Derivation/Capture1.PNG)
@@ -58,6 +65,19 @@ Note: The Matlab code supplemented by Quanser was also canabilized to get the ba
 ![](Photos/Derivation/Capture13.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 3. Matlab Code
+
+Creation of the matlab code below first started with matlab code supplemented by Quanser which was canabilized to get the base model 
+constraints of the Pendulum, the servo model constraints used on the Pendulum, and voltage control characteristics. This was used 
+because having a similar simulation design allowed us to simulate or produce reasonable results. However, if you have an actual Furuta 
+system your constraints/inputs will be based around that system.
+
+Furthermore, this matlab code also initializes the Coppelia Simulation model so communication bewteen the two can occur. Seen near the 
+end of the code.
+
+This matlab code also ties the communications of the Simulink controller model to the Coppelia as well as provides the Simulink 
+controller model with the workspace variables required for it to run properly. See figure below to see data flow between the three 
+programs.
+
 ```
 %% Furuta Pendulum - Setup and Run
 % MECA 482 - Spring 2020 - Final Project
