@@ -3,68 +3,28 @@
 % This code sets up the pendulum parameters and runs all the subfunctions
 % for coppelia sim to collect and simulate
 
-%% Connecting MATLAB to Coppelia
-% Note: 4 API files need to be in the directory of the folder for API's to
-% correctly connect MATLAB to Coppelia, see documentation 
-
-clear
-clc
-
-%Initialize API
-
-sim=remApi('remoteApi');
-
-% using the prototype file (remoteApiProto.m)
-
-sim.simxFinish(-1);
-
-% just in case, close all opened connections
-
-clientID=sim.simxStart('127.0.0.1',19999,true,true,5000,5);
-
-if (clientID>-1)       
-
-disp('Connected to remote API server');       
-
-sim.simxGetStringSignal(clientID,'distance',sim.simx_opmode_streaming);               
-
-set_param('Furuta_Pendulum_Model_Revolinsky_V2', 'SimulationCommand', 'start')               
-
-sim.simxSetJointTargetVelocity(clientID,j1,pos_val,sim.simx_opmode_streaming);
-
-    while(1)  % In this while loop, we will have the communication
-
-        [errorCode,r_mat] = sim.simxGetStringSignal(clientID,'distance',sim.simx_opmode_buffer);           
-
-        % -----Step 1: InitializeJointHandles where you defined your joint under the name of J1 ---------
-        [err_code, j1] = sim.simxGetObjectHandle(clientID,"J1",sim.simx_opmode_blocking);
-        
-        %%if errorCode is not vrep.simx_return_ok, this does not mean there is an error:            
-
-       %%it could be that the first streamed values have not yet arrived, or that the signal            
-
-       %%is empty/non-existent           
-
-            set_param('Furuta_Pendulum_Model_Revolinsky_V2/Constant','Value',num2str(r_mat));  %ballclmod is the model file and Constant is the block's name, r_mat is the variable to send.      
-
-            pause(.01);
-
-            theta = get_param('Furuta_Pendulum_Model_Revolinsky_V2/To Workspace','RuntimeObject'); % We receive the sensor data from Simulink model ballclmod and To Workspace block via RuntimeObject
-
-            theta.InputPort(1).Data;                                                                      % Receive the data
-
-   end
-end
-%}
-
 %% Sets the necessary parameters to run
 % See Quanser MATLAB code to find where all constraints where found
 % Note: start with: setup_rotpen.m, this will be the guide to the finding of all constraint info
 
-
-clear all, close all, clc;
+%clear all, close all, clc;
+clear;
+close all;
+clc;
 format compact; 
 
+dbstop if error
+
+%% Calibration Data
+% Sets the initial angular postion (rads) and the initial angular velocity
+% (rad/s) of the arms/links
+
+% theta0 = 0;       
+% theta_dot0 = 0;
+% alpha0 = 0;
+% alpha_dot0 =0;
+
+% Note: the initial conditions in the simulink model start at 0 by default
 
 %% Environment Constraints - Dependent on the Environment the system is in
 g = 9.81;           % Gravity - [m/s^2]
@@ -149,9 +109,7 @@ z9 = ((1./2).*m_p.*L_p.*L_r);
 
 V_m_modifier = (n_g .* K_g .* n_m .* k_t)./(R_m);
 
-
 %% State Space Representation - Build Open Loop Response
-
 % Add here linearized system model instead of zero
 A = zeros(4);       % Creates Empty 4x4 Matrix - A = System Matrix
 A(1,3) = 1;
@@ -176,11 +134,8 @@ C(2,2) = 1;
 D = zeros(1,2)';    % Creates Empty 1x4 Matrix - D = Feedforward matrix - Should it be 1x4 or 1x2?
 
 % Add actuator dynamics (if you would consider to add)
-
 A(3,3) = A(3,3) - K_g.^2.*k_t.*k_m./R_m.*B(3); 
-
 A(4,3) = A(4,4) - K_g.^2.*k_t.*k_m./R_m.*B(4); 
-
 B = K_g * k_t * B / R_m;
 
 % Labels the soon to be generated SS Model
@@ -235,7 +190,6 @@ h2 = iopzplot(Furuta_ss);
 % For whatever reason the zeros are ploted in this setup, I do not know why
 
 %% Add Controller - %% Pole Placement via Transformation - Balance Control
-
 % Balance control (small angle approx.)
 % Using the state space model of the system above, we can attempt to
 % calculate an appropriate gain matrix of K
@@ -300,12 +254,8 @@ title('Compensated Step Response');
 % Calculated parameters 
 [Knew, prec_new, message_new] = place(Anew,Bnew,desired_poles);       % Calculates new Controller Gains - not really nec?
 
-
 %% Swing-up Control
-
 % Use energy based solution from [Underactuated Robotics, MIT]
-
-% [Er, a_max] = swing_up_FURPEN(eta_m, eta_g, Kg, kt, Rm, Mr, Lr);
 
 % SRV02 High-pass filter in PD control used to compute velocity
 % Cutoff frequency (rad/s)
@@ -354,26 +304,69 @@ Er = Ep_upright_position;
 % Function that saturates the control signal at max acceleration of pendulum pivot (u_max)
 sat_u_max = 20;
 
-%{
-% Swing-up control
-if abs(alpha) < epsilon
-    u = K.*(xd - x);
-else
-    u = sat_u_max.*(mu.*(E_tot - Er).*(alpha_dot.*cos(alpha)));
+%% Connecting MATLAB to Coppelia
+% Note: 4 API files need to be in the directory of the folder for API's to
+% correctly connect MATLAB to Coppelia, see documentation 
+
+% Initialize API
+sim=remApi('remoteApi');
+
+% Using the prototype file (remoteApiProto.m)
+sim.simxFinish(-1);
+
+% Note: Just in case, close all opened connections
+clientID=sim.simxStart('127.0.0.1',19999,true,true,5000,5);
+
+if (clientID>-1)
+    
+    disp('Connected to remote API server');                     
+    set_param('Furuta_Pendulum_Model_Revolinsky_V4', 'SimulationCommand', 'start')               
+
+    %sim.simxSetJointTargetVelocity(clientID,j1,pos_val,sim.simx_opmode_streaming);
+    
+    while(1)  % In this while loop, we will have the communication
+        
+        % Step 1: Initialize Joint and Link Handles where you defined your joints and links under the set coppelia names
+        [err_code_1_object, J1] = sim.simxGetObjectHandle(clientID,'J1',sim.simx_opmode_blocking);
+        [err_code_2_object, J2] = sim.simxGetObjectHandle(clientID,'J2',sim.simx_opmode_blocking);
+        [err_code_3_object, L2] = sim.simxGetObjectHandle(clientID,'L2',sim.simx_opmode_blocking);
+        [err_code_4_object, L3] = sim.simxGetObjectHandle(clientID,'L3',sim.simx_opmode_blocking);
+                %%if errorCode is not vrep.simx_return_ok, this does not mean there is an error:            
+                %%it could be that the first streamed values have not yet arrived, or that the signal            
+                %%is empty/non-existent  
+                
+% Sensor Data from Coppelia
+        [err_code_1_position, theta_J1] = sim.simxGetJointPosition(clientID, J1 , sim.simx_opmode_streaming);
+        [err_code_2_position, alpha_J2] = sim.simxGetJointPosition(clientID, J2 , sim.simx_opmode_streaming);
+        [err_code_1_velocity, linear_velo_theta, theta_dot_J1] = sim.simxGetObjectVelocity(clientID, L2 ,sim.simx_opmode_streaming);
+        [err_code_2_velocity, linear_velo_alpha, alpha_dot_J2] = sim.simxGetObjectVelocity(clientID, L3 ,sim.simx_opmode_streaming);
+        
+        theta_dot_about_z = theta_dot_J1(3);
+        alpha_dot_about_x = alpha_dot_J2(1);
+        alpha_dot_about_y = alpha_dot_J2(2);
+        
+                 pause(.01);
+                
+% Actuator Data from Simulink
+            % We receive the sensor data from Simulink model 'Furuta_pendulum_model' and 'To Workspace theta' block via RuntimeObject
+            theta_s = get_param('Furuta_Pendulum_Model_Revolinsky_V4/To Workspace theta','RuntimeObject');
+            theta_s.InputPort(1).Data;    % Receive the data
+            %simout_t = sim('Furuta_Pendulum_Model_Revolinsky_V4/To Workspace theta','SimulationMode','normal', 'SaveState','on','StateSaveName','xoutNew','SaveOutput','on','OutputSaveName','youtNew');
+            %theta_s = simout_t.get('youtNew');
+            %assignin('base','theta_s',theta_s);
+
+            
+            % We receive the sensor data from Simulink model 'Furuta_pendulum_model' and 'To Workspace theta' block via RuntimeObject
+            alpha_s = get_param('Furuta_Pendulum_Model_Revolinsky_V4/To Workspace alpha','RuntimeObject');
+            alpha_s.InputPort(2).Data;    % Receive the data
+            %simout_a = sim('Furuta_Pendulum_Model_Revolinsky_V4/To Workspace alpha','SimulationMode','normal');
+            %alpha_s = simout_a.get('alpha_s');
+            %assignin('base','alpha_s',alpha_s);
+            
+% Coppelia motion dictated by Simulink model - Will uncomment when I manage to get simulink to write to the work space
+        % Note: Unknown if this code is correct couldn't get past simulink 'to workspace' block error (dot indexing error) so couldn't get to debug coppellia sim motion
+            [err_code_1_set_target_position] = sim.simxSetJointTargetPosition(clientID, J1, theta_s, sim.simx_opmode_streaming);
+            [err_code_2_set_target_velocity] = sim.simxSetJointTargetVelocity(clientID, J1, theta_dot_s, sim.simx_opmode_streaming);
+            
+   end
 end
-%% Display
-
-disp(' ');
-
-disp('Control gains: ');
-
-K
-disp('Swing-up Parameters: ');
-
-disp( [' Er =', num2str(Er) ' J']);
-
-disp( [' a_max=' num2str(a_max) 'm/s^2']);
-
-
-%}
-%}
