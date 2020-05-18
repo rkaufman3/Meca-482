@@ -435,8 +435,8 @@ end
 ## 4. Simulink
 ----------------------------------------------------------------------------------------------------------
 ## 5. Coppelia
-![](Photos/Coppelia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
-![](Photos/Coppelia/)
-![](Photos/Coppelia/)
+![](Photos/Copellia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
+![](Photos/Copellia/Coppelia_Furuta_Pendulum_Downright_Position.PNG)
+![](Photos/Copellia/)
 ----------------------------------------------------------------------------------------------------------
 ## 6. Results
