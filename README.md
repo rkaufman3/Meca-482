@@ -23,7 +23,7 @@ a mathematical model of the system with a designed control system.
 Interpertation:
 - Produce a controller that balances a rotary inverted pendulum in its upright position starting from its downright position.
 - Only the motor on the base which is connected to the pendulum arm has controlable movement (making it an underactuated system). 
-  Therefore, the controller has t move this arm in such a fashion (with the help of a sensor providing data of pendulum link) to force
+  Therefore, the controller has to move this arm in such a fashion (with the help of a sensor providing data of pendulum link) to force
   the pendulum link to balance.
 - Simulate this system in Coppelia.
 
