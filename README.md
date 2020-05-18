@@ -10,6 +10,8 @@
 - [5. Coppelia](#5-Coppelia)
 ----------------------------------------------------------------------------------------------------------
 ## 1. Overview
+
+- Project Description - (Note: this was provided to us as a launch point for this project)
 “Furuta Pendulum – or rotational inverted pendulum- consists of a driven arm which rotates in the
 horizontal plane and a pendulum attached to that arm which is free to rotate in the vertical plane. It was
 invented in 1992 at Tokyo Institute of Technology by Katsuhisa Furuta and his colleagues.” [1] The
@@ -32,6 +34,13 @@ Deliverables:
   architectural explanations such as hardware and software relationships.
 ----------------------------------------------------------------------------------------------------------
 ## 2. Derivation
+
+The initial derivation to aquire the control equations was done by hand and is depicted below. Under the resources folder is a zip file 
+called Courseware Resources.zip which is filled with documentation and initial simulink software from Quanser which was a huge help in
+the derivation and building of the simulink model.
+
+Note: The Matlab code supplemented by Quanser was also canabilized to get the base model constraints of the Pendulum. 
+
 ![](Photos/Derivation/Capture.PNG)
 ![](Photos/Derivation/Capture1.PNG)
 ![](Photos/Derivation/Capture2.PNG)
