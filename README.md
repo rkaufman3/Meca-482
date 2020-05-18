@@ -434,7 +434,7 @@ end
 ----------------------------------------------------------------------------------------------------------
 ## 4. Simulink
 ![](Photos/Simulink/General_Guideline_for_connecting_our_models.PNG)
-![](Photos/Simulink/
+![](Photos/Simulink/Simulink_Furuta_Control_Model.PNG)
 ![](Photos/Simulink/
 ----------------------------------------------------------------------------------------------------------
 ## 5. Coppelia
