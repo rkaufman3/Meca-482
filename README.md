@@ -32,20 +32,20 @@ Deliverables:
   architectural explanations such as hardware and software relationships.
 ----------------------------------------------------------------------------------------------------------
 ## 2. Derivation
-![](Photos/Capture.PNG)
-![](Photos/Capture1.PNG)
-![](Photos/Capture2.PNG)
-![](Photos/Capture3.PNG)
-![](Photos/Capture4.PNG)
-![](Photos/Capture5.PNG)
-![](Photos/Capture6.PNG)
-![](Photos/Capture7.PNG)
-![](Photos/Capture8.PNG)
-![](Photos/Capture9.PNG)
-![](Photos/Capture10.PNG)
-![](Photos/Capture11.PNG)
-![](Photos/Capture12.PNG)
-![](Photos/Capture13.PNG)
+![](Photos/Derivation/Capture.PNG)
+![](Photos/Derivation/Capture1.PNG)
+![](Photos/Derivation/Capture2.PNG)
+![](Photos/Derivation/Capture3.PNG)
+![](Photos/Derivation/Capture4.PNG)
+![](Photos/Derivation/Capture5.PNG)
+![](Photos/Derivation/Capture6.PNG)
+![](Photos/Derivation/Capture7.PNG)
+![](Photos/Derivation/Capture8.PNG)
+![](Photos/Derivation/Capture9.PNG)
+![](Photos/Derivation/Capture10.PNG)
+![](Photos/Derivation/Capture11.PNG)
+![](Photos/Derivation/Capture12.PNG)
+![](Photos/Derivation/Capture13.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 3. Matlab Code
 ```
