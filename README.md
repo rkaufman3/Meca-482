@@ -20,6 +20,13 @@ problem that the team investigates with this project is creating a test platform
 algorithms -in a low-cost and streamlined fashion. In that regard, the project team is expected to create
 a mathematical model of the system with a designed control system.
 
+Interpertation:
+- Produce a controller that balances a rotary inverted pendulum in its upright position starting from its downright position.
+- Only the motor on the base which is connected to the pendulum arm has controlable movement (making it an underactuated system). 
+  Therefore, the controller has t move this arm in such a fashion (with the help of a sensor providing data of pendulum link) to force
+  the pendulum link to balance.
+- Simulate this system in Coppelia.
+
 Deliverables:
 - The team is expected to present their project (~ 5mins) and build a web page which contains all
   deliverables in GitHub.
@@ -454,13 +461,22 @@ end
 ```
 ----------------------------------------------------------------------------------------------------------
 ## 4. Simulink
+Figure: Depicting the Information Flow for our Project
 ![](Photos/Simulink/General_Guideline_for_connecting_our_models.PNG)
+
+Figure: Showing the Simulink Controller Model for our Furuta Pendulum
 ![](Photos/Simulink/Simulink_Furuta_Control_Model.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 5. Coppelia
+Figures: Coppellia Model of Furuta Pendulum in action, Upright, Downright and In-Motion Images
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Downright_Position.PNG)
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_in_motion.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 6. Results
+Sadly, we didn't achieve any notable results for our information flow was broken by an error in the matlab code. When we were trying to 
+connect the simulink control data back to the matlab we ran into a dot indexing error shown below. This prevented the matlab from 
+passing the nessecary control info back to the coppelia sim which would've ultimately controlled the pendulum as intended for the start (as was discussed in the simulink tab).
+
+Figure: Error breaking the information flow stop the progess of a complete controlled simulation of the Furuta Pendulum
 ![](Photos/Simulink/Error_in_matlab_code_that_stoped_us_from_finishing.PNG)
