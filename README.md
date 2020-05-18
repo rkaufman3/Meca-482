@@ -437,6 +437,6 @@ end
 ## 5. Coppelia
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Downright_Position.PNG)
-![](Photos/Copellia/)
+![](Photos/Copellia/Coppelia_Furuta_Pendulum_in_motion.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 6. Results
