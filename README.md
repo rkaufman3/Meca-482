@@ -435,7 +435,6 @@ end
 ## 4. Simulink
 ![](Photos/Simulink/General_Guideline_for_connecting_our_models.PNG)
 ![](Photos/Simulink/Simulink_Furuta_Control_Model.PNG)
-![](Photos/Simulink/
 ----------------------------------------------------------------------------------------------------------
 ## 5. Coppelia
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
@@ -443,3 +442,4 @@ end
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_in_motion.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 6. Results
+![](Photos/Simulink/Error_in_matlab_code_that_stoped_us_from_finishing.PNG)
