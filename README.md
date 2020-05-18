@@ -433,6 +433,9 @@ end
 ```
 ----------------------------------------------------------------------------------------------------------
 ## 4. Simulink
+![](Photos/Simulink/General_Guideline_for_connecting_our_models.PNG)
+![](Photos/Simulink/
+![](Photos/Simulink/
 ----------------------------------------------------------------------------------------------------------
 ## 5. Coppelia
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
