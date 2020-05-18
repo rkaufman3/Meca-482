@@ -468,6 +468,17 @@ Figure: Showing the Simulink Controller Model for our Furuta Pendulum
 ![](Photos/Simulink/Simulink_Furuta_Control_Model.PNG)
 ----------------------------------------------------------------------------------------------------------
 ## 5. Coppelia
+Note: The remApi.m, remoteApi.dll, remoteApiProto.m, simpleTest.m files need to be included in the 
+project folder to allow the Coppelia to connect to the Matlab (try to have everything in one project 
+folder).
+
+Also note unthreaded child script needs to be incorpated to the coppelia to also ensure 
+initialization in the Matlab code, depicted below.
+
+function sysCall_init()
+    simRemoteApi.start(19999)
+end
+
 Figures: Coppellia Model of Furuta Pendulum in action, Upright, Downright and In-Motion Images
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Upright_Position.PNG)
 ![](Photos/Copellia/Coppelia_Furuta_Pendulum_Downright_Position.PNG)
