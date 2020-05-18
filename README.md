@@ -8,6 +8,7 @@
 - [3. Matlab Code](#3-Matlab-Code)
 - [4. Simulink](#4-Simulink)
 - [5. Coppelia](#5-Coppelia)
+- [6. Results](#6-Results)
 ----------------------------------------------------------------------------------------------------------
 ## 1. Overview
 
